@@ -1,60 +1,176 @@
 {
   // Required
   "manifest_version": 2,
-  "name": "My Extension",
-  "version": "versionString",
+  "lang": "en",
+  "dir": "auto",
+  "name": "Extension demo with angularjs",
+  "version": "0.1",
 
   // Recommended
-  "default_locale": "en",
-  "description": "A plain text description",
-  "icons": { ... },
+  "_locale": "en",
+  "description": "Box demo for supplier",
+  "short_name": "Donate",
+  "icons": { "16": "Img/Icon/iconBox.png" },
+  //"icons": [
+  //  //{
+  //  //  "src": "icon16.png", // change
+  //  //  "sizes": "16x16", // change
+  //  //  "type": "image/png" // change
+  //  //},
+  //  //{
+  //  //  "src": "icon32.png", // change
+  //  //  "sizes": "32x32", // change
+  //  //  "type": "image/png" // change
+  //  //},
+  //  {
+  //    "src": "~/Documents/GitHub/BoxExtension/Img/Icon/iconBox.png", // change
+  //    "sizes": "any", // change
+  //    "type": "image/png" // change
+  //  }
+  //],
+  "scope": "/racer/", // change
+  "start_url": "", // change
+  "display": "browser",
+  "orientation": "landscape",
+  "theme_color": "aliceblue",
+  "background_color": "green",
+  "serviceworker": {
+    "src": "sw.js", // change
+    "scope": "/racer/", // change
+    "use_cache": false
+  },
+  "screenshots": [
+    {
+      "platform": "windows",
+      "src": "",
+      "sizes": "any",
+      "type": "pm4/avi"
+    },
+    {
+      "src": "screenshots/in-game-1x.jpg",
+      "sizes": "640x480",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "screenshots/in-game-2x.jpg",
+      "sizes": "1280x920",
+      "type": "image/jpeg"
+    }
+  ],
+  "app": {
+    "urls": [
+      "http://www.nike.com/us/en_us/"
+    ],
+    "launch": {
+      "web_url": "http://www.nike.com/us/en_us/"
+    }
+  },
 
   // Pick one (or none)
-  "browser_action": { ... },
-  "page_action": { ... },
+  "browser_action": {
+    "default_icon": "Img/Icon/iconBox.png",
+    "default_title": "Enable/Disable",
+    "default_popup": "popup.html",
+    "content_scripts": [
+      {
+        "js": [ "content_script.js" ],
+        "matches": [ "*://*/*" ]
+      }
+    ]
+  },
+  "page_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html",
+    "popup": "https://google.com.vn",
+    "default_title": "Click here!"
+  },
+  "applications": {
+    "gecko": {
+      "id": "addon@example.com",
+      "strict_min_version": "42.0"
+    }
+  },
 
   // Optional
-  "author": ...,
-  "automation": ...,
+  "author": "DoCuong",
   "background": {
-    // Recommended
-    "persistent": false
+    "scripts": [ "jquery.js", "my-background.js" ],
+    "page": "my-background.html"
   },
-  "background_page": ...,
-  "chrome_settings_overrides": { ... },
+  "chrome_settings_overrides": {
+    "search_provider": {
+      "name": "Discogs",
+      "search_url": "https://www.discogs.com/search/?q={searchTerms}",
+      "keyword": "disc",
+      "favicon_url": "https://www.discogs.com/favicon.ico"
+    }
+  },
   "chrome_ui_overrides": {
     "bookmarks_ui": {
       "remove_bookmark_shortcut": true,
       "remove_button": true
     }
   },
-  "chrome_url_overrides": { ... },
-  "commands": { ... },
-  "content_capabilities": ...,
-  "content_scripts": [ { ... } ],
-  "content_security_policy": "policyString",
-  "converted_from_user_script": ...,
-  "current_locale": ...,
-  "declarative_net_request": ...,
+  "commands": {
+    "toggle-feature": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "linux": "Ctrl+Shift+U"
+      },
+      "description": "Send a 'toggle-feature' event"
+    }
+  },
+  "content_scripts": [
+    {
+      "exclude_matches": [ "*://developer.mozilla.org/*" ],
+      "matches": [ "*://*.mozilla.org/*" ],
+      "js": [ "borderify.js" ]
+    }
+  ],
+  "content_security_policy": "script-src 'self'; object-src 'self'",
   "devtools_page": "devtools.html",
-  "event_rules": [ { ... } ],
   "externally_connectable": {
     "matches": [ "*://*.example.com/*" ]
   },
-  "file_browser_handlers": [ ... ],
   "file_system_provider_capabilities": {
     "configurable": true,
     "multiple_mounts": true,
     "source": "network"
   },
   "homepage_url": "http://path/to/homepage",
-  "import": [ { "id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" } ],
+  //"import": [ { "id": "0919829993" } ],
   "incognito": "spanning, split, or not_allowed",
-  "input_components": ...,
-  "key": "publicKey",
-  "minimum_chrome_version": "versionString",
-  "nacl_modules": [ ... ],
-  "oauth2": ...,
+  // dung de thay doi giao dien cua trinh duyet
+  "theme": {
+    "images": {
+      "theme_frame": "Img/Theme/theme1.jpg",
+      "theme_toolbar": "Img/Theme/theme1.jpg",
+      "theme_ntp_background": "Img/Theme/halloween1.jpg",
+      "theme_tab_background": "Img/Theme/halloween1.jpg"
+    }
+  },
+  "colors": {
+    "ntp_link": [ 118, 17, 25 ],
+    "ntp_text": [ 118, 17, 25 ],
+    "ntp_section_link": [ 118, 17, 25 ],
+    "ntp_section_text": [ 51, 55, 58 ],
+    "ntp_background": [ 51, 55, 58 ],
+    "frame": [ 51, 55, 58 ],
+    "toolbar": [ 51, 55, 58 ],
+    "tab_text": [ 118, 17, 25 ],
+    "tab_background_text": [ 51, 55, 58 ],
+    "bookmark_text": [ 118, 17, 25 ]
+  },
+  "tints": {
+    "buttons": [ 0.33, 0.5, 0.47 ],
+    "frame_inactive": [ 0.50, 0.50, 0.50 ],
+    "frame_incognito_inactive": [ 0.50, 0.50, 0.50 ]
+  },
+  "properties": {
+    "ntp_background_alignment": "center",
+    "ntp_background_repeat": "no-repeat"
+  },
+  "minimum_chrome_version": "34",
   "offline_enabled": true,
   "omnibox": {
     "keyword": "aString"
@@ -65,20 +181,21 @@
     "chrome_style": true,
     "page": "options.html"
   },
-  "permissions": [ "tabs" ],
-  "platforms": ...,
-  "plugins": [ ... ],
-  "requirements": { ... },
-  "sandbox": [ ... ],
-  "short_name": "Short Name",
-  "signature": ...,
-  "spellcheck": ...,
+  "permissions": [
+    "tabs",
+    "bookmarks",
+    "*://developer.mozilla.org/*",
+    "http://*.google.com/",
+    "unlimitedStorage",
+    "webRequest"
+  ],
+  "platforms": "web",
   "storage": {
     "managed_schema": "schema.json"
   },
-  "system_indicator": ...,
-  "tts_engine": { ... },
   "update_url": "http://path/to/updateInfo.xml",
-  "version_name": "aString",
-  "web_accessible_resources": [ ... ]
+  "version_name": "Box v.1",
+  "minimum_edge_version": "33.14281.1000.0",
+  "web_accessible_resources": [ "images/my-image.png" ]
+
 }
