@@ -1,48 +1,83 @@
 <!DOCTYPE html>
-<html ng-app="Application">
+<html dir="ltr" lang="en" ng-app="Application">
 <head>
     <title>Extension by BoxBox</title>
     <link rel="stylesheet" type="text/css" href="\Lib\Bootstrap\css\bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="\Lib\Css\style.css">
     <link rel="stylesheet" type="text/css" href="\Lib\FontAwesome\css\font-awesome.min.css" />
 </head>
-<body ng-controller="MaterialController">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h5 class="color-green">{{ (todoList | filter: {completed:false}).length}} Item</h5>
-                <form id="todo-form" ng-submit="add()">
+<body class="body-sm no-pm" ng-controller="MaterialController" ng-cloak>
+    <div class="container max-width-none no-pm">
+        <div class="card text-center no-pm">
+            <div class="card-header">
+                <h2>{{}}</h2>
+            </div>
+            <div class="card-block">
+                <form class="form-horizontal was-validated" role="form" name="frm">
+                    <!--<div style="display:none" class="alert alert-danger">
+                        <p>Error:</p>
+                        <span></span>
+                    </div>
+                    <label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" required>
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">Check this custom checkbox</span>
+                    </label>
                     <div class="form-group">
-                        <input type="text" id="new-todo" ng-model="newContent" class="form-control" placeholder="Write ..." />
+                        <label for="firstname" class="col-md-3 control-label">Full Name</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="firstname" placeholder="Full Name">
+                        </div>
+                    </div>
+                    <select class="custom-select">
+                        <option selected>Open this select menu</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                    <div class="form-group">
+                        <label for="password" class="col-md-3 control-label">Password</label>
+                        <div class="col-md-9">
+                            <input type="password" class="form-control" name="passwd" placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="col-md-3 control-label">Confirm Password</label>
+                        <div class="col-md-9">
+                            <input type="password" class="form-control" name="passwd" placeholder="Confirm Password">
+                        </div>
+                    </div>-->
+                    <div class="form-group">
+                        <label for="password" class="col-md-3 control-label">Math (*)</label>
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="entity.value1" placeholder="value 1" ng-change="changeValue(entity.value1)">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="entity.value2" placeholder="value 2" ng-change="changeValue(entity.value2)">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="entity.value3" placeholder="value 3" ng-change="changeValue(entity.value3)">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="col-md-3 control-label">Total</label>
+                        <div class="col-md-9">{{total}}</div>
                     </div>
                 </form>
             </div>
-        </div>
-        <div class="row" id="todo-list">
-            <div class="todo-item col-md-12" ng-repeat="todo in todoList | orderBy: createdAt" ng-class="{completed: todo.completed}">
-                <input type="checkbox" class="checked" ng-model="todo.completed" ng-click="toggleCompleted()" />
-                <span class="todo-content">{{todo.content}}</span>
-                <a class="btn-remove-todo pull-right" ng-click="remove(todo)">
-                    <i class="glyphicon glyphicon-remove"></i>
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div id="toolbar">
-                    <a ng-href="" ng-click="removeAll()" class="btn btn-small btn-primary pull-right" ng-show="todoList.length > 0">
-                        <i class="glyphicon glyphicon-remove"></i> Clear all
-                    </a>
-                </div>
-            </div>
+            <div class="card-footer text-muted">Design by BoxBox v.1 (2017)</div>
         </div>
     </div>
-    <script type="text/javascript" src="\Lib\Jquery\jquery.min.js"></script>
+    <!--<script type="text/javascript" src="\Lib\Jquery\jquery.min.js"></script>-->
+    <script type="text/javascript" src="\Lib\Jquery\jquery-3.2.1.slim.min.js"></script>
     <script type="text/javascript" src="\Lib\Jquery\popper.min.js"></script>
-    <script type="text/javascript" src="\Lib\AngularJs\angular.min.js"></script>
+    <script type="text/javascript" src="\Lib\Js\tether.min.js"></script>
     <script type="text/javascript" src="\Lib\Bootstrap\js\bootstrap.min.js"></script>
+    <script type="text/javascript" src="\Lib\AngularJs\angular.min.js"></script>
     <script type="text/javascript" src="\App\Application.js"></script>
     <script type="text/javascript" src="\App\Controller.js"></script>
     <script type="text/javascript" src="\App\Service.js"></script>
+    <script type="text/javascript" src="\App\script.js"></script>
 </body>
 </html>
+
