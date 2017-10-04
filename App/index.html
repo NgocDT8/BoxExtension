@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="Application">
+<head>
+    <title>Extension by BoxBox</title>
+    <link rel="stylesheet" type="text/css" href="\Lib\Bootstrap\css\bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="\Lib\Css\style.css">
+    <link rel="stylesheet" type="text/css" href="\Lib\FontAwesome\css\font-awesome.min.css" />
+</head>
+<body ng-controller="MaterialController">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h5 class="color-green">{{ (todoList | filter: {completed:false}).length}} Item</h5>
+                <form id="todo-form" ng-submit="add()">
+                    <div class="form-group">
+                        <input type="text" id="new-todo" ng-model="newContent" class="form-control" placeholder="Write ..." />
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row" id="todo-list">
+            <div class="todo-item col-md-12" ng-repeat="todo in todoList | orderBy: createdAt" ng-class="{completed: todo.completed}">
+                <input type="checkbox" class="checked" ng-model="todo.completed" ng-click="toggleCompleted()" />
+                <span class="todo-content">{{todo.content}}</span>
+                <a class="btn-remove-todo pull-right" ng-click="remove(todo)">
+                    <i class="glyphicon glyphicon-remove"></i>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="toolbar">
+                    <a ng-href="" ng-click="removeAll()" class="btn btn-small btn-primary pull-right" ng-show="todoList.length > 0">
+                        <i class="glyphicon glyphicon-remove"></i> Clear all
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="\Lib\Jquery\jquery.min.js"></script>
+    <script type="text/javascript" src="\Lib\Jquery\popper.min.js"></script>
+    <script type="text/javascript" src="\Lib\AngularJs\angular.min.js"></script>
+    <script type="text/javascript" src="\Lib\Bootstrap\js\bootstrap.min.js"></script>
+    <script type="text/javascript" src="\App\Application.js"></script>
+    <script type="text/javascript" src="\App\Controller.js"></script>
+    <script type="text/javascript" src="\App\Service.js"></script>
+</body>
+</html>
