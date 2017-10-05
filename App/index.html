@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html dir="ltr" lang="en" ng-app="Application">
 <head>
     <title>Extension by BoxBox</title>
@@ -6,66 +6,73 @@
     <link rel="stylesheet" type="text/css" href="\Lib\Css\style.css">
     <link rel="stylesheet" type="text/css" href="\Lib\FontAwesome\css\font-awesome.min.css" />
 </head>
-<body class="body-sm no-pm" ng-controller="MaterialController" ng-cloak>
+<body class="body-sm no-pm" ng-controller="MaterialController" ng-init="initData()" ng-cloak>
     <div class="container max-width-none no-pm">
-        <div class="card text-center no-pm">
+        <div class="card no-pm">
             <div class="card-header">
-                <h2>{{}}</h2>
+                <h5 class="text-center font-size-18 font-weight-bold color-green">{{titleEntity.GroupName}}</h5>
             </div>
-            <div class="card-block">
-                <form class="form-horizontal was-validated" role="form" name="frm">
-                    <!--<div style="display:none" class="alert alert-danger">
-                        <p>Error:</p>
-                        <span></span>
+            <div class="col-sm-12 col-md-12 col-lg-12 no-pm font-size-13">
+                <!--<form class="form-horizontal was-validated no-pm" role="form" name="frm">-->
+                <!--<div style="display:none" class="alert alert-danger">
+                    <p>Error:</p>
+                    <span></span>
+                </div>
+                <label class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" required>
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">Check this custom checkbox</span>
+                </label>
+                <div class="form-group">
+                    <label for="firstname" class="col-md-3 control-label">Full Name</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" name="firstname" placeholder="Full Name">
                     </div>
-                    <label class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" required>
-                        <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description">Check this custom checkbox</span>
-                    </label>
-                    <div class="form-group">
-                        <label for="firstname" class="col-md-3 control-label">Full Name</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control" name="firstname" placeholder="Full Name">
-                        </div>
+                </div>
+                <select class="custom-select">
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+                <div class="form-group">
+                    <label for="password" class="col-md-3 control-label">Password</label>
+                    <div class="col-md-9">
+                        <input type="password" class="form-control" name="passwd" placeholder="Password">
                     </div>
-                    <select class="custom-select">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-md-3 control-label">Confirm Password</label>
+                    <div class="col-md-9">
+                        <input type="password" class="form-control" name="passwd" placeholder="Confirm Password">
+                    </div>
+                </div>-->
+                <div class="col-sm-12 col-md-12 col-lg-12 no-pm text-right">
+                    {{titleEntity.ChooseUnit}}
+                    <select class="col-sm-2 col-md-2 col-lg-2 no-pm" ng-model="materialEntity.Unit" ng-change="changeUnit(materialEntity)" ng-options="item.Value for item in unitEntities track by item.Key">
+                        <!--<option selected="selected" value="" hidden="hidden">{{titleEntity.ChooseUnit}}</option>-->
                     </select>
-                    <div class="form-group">
-                        <label for="password" class="col-md-3 control-label">Password</label>
-                        <div class="col-md-9">
-                            <input type="password" class="form-control" name="passwd" placeholder="Password">
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12 no-pm text-left">
+                    <div class="col-sm-4 col-md-4 col-lg-4 no-pm pull-left">
+                        <div class="col-sm-12 col-md-12 col-lg-12 no-pm text-center font-weight-bold">
+                            Thép các bon và thép hợp kim thấp
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="password" class="col-md-3 control-label">Confirm Password</label>
-                        <div class="col-md-9">
-                            <input type="password" class="form-control" name="passwd" placeholder="Confirm Password">
-                        </div>
-                    </div>-->
-                    <div class="form-group">
-                        <label for="password" class="col-md-3 control-label">Math (*)</label>
-                        <div class="col-md-3">
-                            <input type="number" class="form-control" ng-model="entity.value1" placeholder="value 1" ng-change="changeValue(entity.value1)">
-                        </div>
-                        <div class="col-md-3">
-                            <input type="number" class="form-control" ng-model="entity.value2" placeholder="value 2" ng-change="changeValue(entity.value2)">
-                        </div>
-                        <div class="col-md-3">
-                            <input type="number" class="form-control" ng-model="entity.value3" placeholder="value 3" ng-change="changeValue(entity.value3)">
+                    <div class="col-sm-4 col-md-4 col-lg-4 no-pm pull-left">
+                        <div class="col-sm-12 col-md-12 col-lg-12 no-pm text-center font-weight-bold">
+                            Liên kết hàn
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="password" class="col-md-3 control-label">Total</label>
-                        <div class="col-md-9">{{total}}</div>
+                    <div class="col-sm-4 col-md-4 col-lg-4 no-pm pull-left">
+                        <div class="col-sm-12 col-md-12 col-lg-12 no-pm text-center font-weight-bold">
+                            Liên kết bu lông
+                        </div>
                     </div>
-                </form>
+                </div>
+                <!--</form>-->
             </div>
-            <div class="card-footer text-muted">Design by BoxBox v.1 (2017)</div>
+            <div class="card-footer"><h6 class="text-left color-gray font-size-11">Design by BoxBox v.1 (2017)</h6></div>
         </div>
     </div>
     <!--<script type="text/javascript" src="\Lib\Jquery\jquery.min.js"></script>-->

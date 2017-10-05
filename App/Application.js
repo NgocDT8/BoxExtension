@@ -14,6 +14,10 @@
                 promise: null
             };
             $rootScope.dateCurrent = new Date();
+            $rootScope.titleEntity = {
+                "GroupName": "Bảng tra đặc trưng vật liệu thép",
+                "ChooseUnit": "Chọn đơn vị"
+            };
         });
 
     // number integer
